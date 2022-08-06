@@ -4,7 +4,7 @@ var formDef1=
 [
     { 
         label:'Название сайта:',
-        kind:'longtext',   //type
+        kind:'longtext',  
         name:'sitename'
     },
     {
@@ -139,4 +139,4 @@ function creatForm(formDef){
 
 }
 
-creatForm(formDef2)
+creatForm(formDef1)
