@@ -71,6 +71,7 @@ var formDef2=
 function creatForm(formDef){
     let form=document.forms.form;
     let newform = document.createElement('form')
+    
     for(let i=0;i<formDef.length;i++){
 
         let label = formDef[i].label
@@ -135,8 +136,9 @@ function creatForm(formDef){
          
         newform.appendChild(p)
     }
-    document.body.replaceChild(newform,form)
+    document.body.appendChild(newform)
 
 }
 
 creatForm(formDef1)
+creatForm(formDef2)
