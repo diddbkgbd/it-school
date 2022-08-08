@@ -25,12 +25,13 @@ function buildWrapper(teg){
     return wrap;
 };   
 
-var wrapP=buildWrapper("P");   
+  var wrapP=buildWrapper("P");   
   console.log( wrapP("Однажды в студёную зимнюю пору") );
   // в консоль выводится строка "<P>Однажды в студёную зимнюю пору</P>"
+  var wrapP=buildWrapper("P");
  console.log( wrapP("Однажды в студёную зимнюю пору",{lang:"ru"}) );
   // в консоль выводится строка "<P lang='ru'>Однажды в студёную зимнюю пору</P>"
-
+  var wrapP=buildWrapper("P");
   console.log( wrapP("Однажды в <студёную> зимнюю пору") );
 //   // в консоль выводится строка "<P>Однажды в &lt;студёную&gt; зимнюю пору</P>"
   var wrapH1=buildWrapper("H1"); // строим функцию для оборачивания текста в тег H1
