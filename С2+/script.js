@@ -2,7 +2,7 @@ function deepCopy(obj) {
     let clObj={};
     let clObjAr=[];
 
-    if (obj == null || (typeof obj !== 'object' && typeof obj !== 'array')) {
+    if (obj == null || typeof obj !== 'object') {
         return obj
     }
 
