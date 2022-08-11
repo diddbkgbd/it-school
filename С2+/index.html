@@ -6,9 +6,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        let assert = chai.assert;
+    </script>
 </head>
 <body>
-    
     <script src="script.js"></script>
+    <script>
+        var h1={ a:5, b:{b1:6,b2:7}, c:[33,22], d:null, e:undefined, f:Number.NaN };
+        var h2=deepCopy(h1);
+
+
+        var a1=[ 5, {b1:6,b2:7}, [33,22], null, undefined, Number.NaN];
+        var a2=deepCopy(a1);
+
+                
+        var v1="sss";
+        var v2=deepCopy(v1);
+
+        var z1=null;
+        var z2=deepCopy(z1);
+        
+        var n1=Number.NaN;
+        var n2=deepCopy(n1);
+
+        describe("h1 and H2 - (Object)", function() {
+            const testSet=[
+                {a:h1, a0:"h1", b:h2, b0:"h2", roots: false },
+                {a:h1.a, a0:"h1.a", b:h2.a, b0:"h2.a", roots:true },
+                {a:h1.b, a0:"h1.b",  b:h2.b, b0:"h2.b", roots: false },
+                {a:h1.b.b1, a0:"h1.b.b1", b:h2.b.b1, b0:"h2.b.b1", roots: true },
+                {a: h1.c, a0:"h1.c", b: h2.c, b0:"h2.c", roots: false },
+                {a: h1.c[0],a0:"h1.c[0]", b:h2.c[0], b0:"h2.c[0]", roots: true },
+                {a: h1.d, a0:"h1.d", b:h2.d, b0:"h2.d", roots: true },
+                {a: h1.e, a0:"h1.e", b:h2.e, b0:"h2.e", roots: true },
+
+
+                ];
+
+                for ( let test of testSet ) {
+                    it(`cравнение ${test.a0} ===${test.b0} и они равны ${test.roots}`, function(){
+                        const roots=(test.a===test.b)
+                        assert.deepEqual(roots,test.roots);
+                    });
+                }
+
+
+                it(`cравнение isNaN(h2.f) и оно равно true`, function(){
+                    
+                        assert.deepEqual(isNaN(h2.f),true);
+                });
+                it(`cравнение h2.c instanceof Array и оно равно true`, function(){
+                    
+                    assert.deepEqual((h2.c instanceof Array),true);
+                });
+
+        });
+        describe("a1 and a2 - (Array) ", function() {
+            const testSet=[
+                {a:a1, a0:"a1", b:a2, b0:"a2", roots: false },
+                {a:typeof(a2), a0:"typeof(a2)", b:typeof(a1), b0:"typeof(a1)", roots:true },
+                {a: a1[0], a0:" a1[0]",  b: a2[0], b0:" a2[0]", roots: true },
+                {a: a1[1], a0:" a1[1]", b: a2[1], b0:" a1[1]", roots: false },
+                {a: a1[1].b1, a0:"a1[1].b1", b: a2[1].b1, b0:"a2[1].b1", roots: true },
+                {a: a1[2],a0:"a1[2]", b:a2[2] , b0:"a2[2] ", roots: false },
+                {a: a1[2][0], a0:"a1[2][0]", b:a2[2][0], b0:"a2[2][0]", roots: true },
+                {a: a1[3], a0:"a1[3]", b:a2[3], b0:"a2[3]", roots: true },
+                {a: a1[4], a0:"a1[4]", b:a2[4], b0:"a2[4]", roots: true },
+
+
+                ];
+
+                for ( let test of testSet ) {
+                    it(`cравнение ${test.a0} ===${test.b0} и они равны ${test.roots}`, function(){
+                        const roots=(test.a===test.b)
+                        assert.deepEqual(roots,test.roots);
+                    });
+                }
+
+
+                it(`cравнение isNaN(a2[5]) и оно равно true`, function(){
+                    
+                        assert.deepEqual(isNaN(a2[5]),true);
+                });
+                it(`cравнение a2[2] instanceof Array и оно равно true`, function(){
+                    
+                    assert.deepEqual((a2[2] instanceof Array),true);
+                });
+
+        });
+        describe("v1 and v2 - (String)", function() {
+            const testSet=[
+                {a:v1, a0:"v1", b:v2, b0:"v2", roots: true },
+                
+
+
+                ];
+                it(`cравнение typeof(v2)===typeof(v1) и оно равно true`, function(){
+                    
+                    assert.deepEqual((typeof(v2)===typeof(v1)),true);
+                });
+
+                for ( let test of testSet ) {
+                    it(`cравнение ${test.a0} ===${test.b0} и они равны ${test.roots}`, function(){
+                        const roots=(test.a===test.b)
+                        assert.deepEqual(roots,test.roots);
+                    });
+                }
+
+
+               
+               
+        });
+        describe("z1 and z2 - (null)", function() {
+            const testSet=[
+                {a:z1, a0:"z1", b:z2, b0:"z2", roots: true },
+                
+
+
+                ];
+                it(`cравнение typeof(z2)===typeof(z1) и оно равно true`, function(){
+                    
+                    assert.deepEqual((typeof(z2)===typeof(z1)),true);
+                });
+
+                for ( let test of testSet ) {
+                    it(`cравнение ${test.a0} ===${test.b0} и они равны ${test.roots}`, function(){
+                        const roots=(test.a===test.b)
+                        assert.deepEqual(roots,test.roots);
+                    });
+                }
+
+
+               
+               
+        });
+        describe("n1 and n2  -(NaN)", function() {
+
+                it(`cравнение typeof(n2)===typeof(n1) и оно равно true`, function(){
+                    
+                    assert.deepEqual((typeof(n2)===typeof(n1)),true);
+                });
+
+                it(`cравнение isNaN(n2) и они равны true`, function(){
+
+                    assert.deepEqual((isNaN(n2)),true);
+                });
+                            
+               
+        });
+
+    </script>
+  
+    <div id="mocha"></div>
+    
+
+    <script>
+        mocha.run();
+    </script>
+    
 </body>
 </html>
