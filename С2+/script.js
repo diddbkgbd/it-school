@@ -1,22 +1,20 @@
 function deepCopy(obj) {
-    let clObj={};
-    let strClObj;
-    if (Number.isNaN(obj)){
+    let clObj=[];
+
+    if (obj == null || typeof obj !== 'object'|| Number.isNaN(obj)||typeof(obj)=="string") {
         return obj
     }
-    if (obj == null || typeof obj !== 'object'|| Number.isNaN(obj)) {
-        return obj
-    }
-    
-    if ( typeof(obj)=="string"){
-        strClObj=obj.slice();
-        return strClObj
+    if (obj instanceof Array){
+        for (let m=0; m<obj.length;m++){
+            if(obj[m] instanceof Array){
+                clObj[m] = deepCopy(obj[m]);
+                continue;
+            }
+            clObj[m] = obj[m];
+        }
+        
     }
     for(const i in obj) {
-        if (Array.isArray(obj[i]) ){
-            clObj[i]=obj[i].slice(0);
-            continue
-            }
         if (obj[i] instanceof Object) {
             clObj[i] = deepCopy(obj[i]);
             continue;
