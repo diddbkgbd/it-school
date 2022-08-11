@@ -2,8 +2,6 @@ function deepCopy(obj) {
     let clObj={};
     let strClObj;
     if (Number.isNaN(obj)){
-        console.log(obj)
-        strClObj=obj
         return obj
     }
     if (obj == null || typeof obj !== 'object'|| Number.isNaN(obj)) {
