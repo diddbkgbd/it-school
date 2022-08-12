@@ -6,8 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        let assert = chai.assert;
+    </script>
 </head>
 <body>
+
     <script src="script.js"></script>
+    <script>
+        var H1={ a:5, b: { b1:6, b2:7 } };
+        var H2={ b: { b1:6, b2:7 }, a:5 };
+        var H3={ a:5, b: { b1:6 } };
+        var H4={ a:5, b: { b1:66, b2:7 } };
+        var H5={ a:5, b: { b1:6, b2:7, b3:8 } };
+        var H6={ a:null, b:undefined, c:Number.NaN };
+        var H7={ c:Number.NaN, b:undefined, a:null };
+        var H8={a:5,b:6};
+        var H9={c:5,d:6};
+        var H10={a:5};
+        var A1=[5,7];
+        var A2=[5,5,7];
+        var A3=[5,8,7];
+
+
+        describe("Testing deepComp()", function() {
+            const testSet=[
+                {a:deepComp(H1,H2),a0:"deepComp(H1,H2)", roots: true },
+                {a:deepComp(H1,H3),a0:"deepComp(H1,H3)", roots: false },
+                {a:deepComp(H1,H4),a0:"deepComp(H1,H4)", roots: false },
+                {a:deepComp(H1,H5),a0:"deepComp(H1,H5)", roots: false },
+                {a:deepComp(H6,H7),a0:"deepComp(H6,H7)", roots: true },
+                {a:deepComp(H8,H9),a0:"deepComp(H8,H9)", roots: false },
+                {a:deepComp(H8,H10),a0:"deepComp(H8,H10)", roots: false },
+                {a:deepComp(null,H10),a0:"deepComp(null,H10)", roots: false },
+                {a:deepComp(H10,null),a0:"deepComp(H10,null)", roots: false },
+                {a:deepComp(null,null),a0:"deepComp(null,null)", roots: true },
+
+                {a:deepComp(null,undefined),a0:"deepComp(null,undefined)", roots: false },
+                {a:deepComp(5,"5"),a0:"deepComp(5,'5')", roots: false },
+                {a:deepComp(5,H1),a0:"deepComp(5,H1)", roots: false },
+                {a:deepComp(A1,H1),a0:"deepComp(A1,H1)", roots: false },
+                {a:deepComp(A2,A3),a0:"deepComp(A2,A3)", roots: false },
+
+                {a:deepComp( {a:5,b:undefined}, {a:5,c:undefined} ),a0:"deepComp( {a:5,b:undefined}, {a:5,c:undefined} )", roots: false },
+                {a:deepComp([5,7],{0:5,1:7}),a0:"deepComp([5,7],{0:5,1:7})", roots: false },
+                {a:deepComp( [5,7],{0:5,1:7,length:2} ),a0:"deepComp( [5,7],{0:5,1:7,length:2} )", roots: false },
+                {a:deepComp("aaa","bbb"),a0:"deepComp('aaa','bbb')", roots: false },
+                {a:deepComp(Number.NaN,Number.NaN),a0:"deepComp(Number.NaN,Number.NaN)", roots: true },
+                
+                ];
+
+                for ( let test of testSet ) {
+                    it(`cравнение ${test.a0} и она равны ${test.roots}`, function(){
+                        const roots=(test.a===test.b)
+                        assert.deepEqual(test.a,test.roots);
+                    });
+                }
+
+
+                
+
+        });
+        
+    </script>
+  
+    <div id="mocha"></div>
+    
+
+    <script>
+        mocha.run();
+    </script>
+    
 </body>
 </html>

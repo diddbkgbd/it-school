@@ -1,59 +1,50 @@
-var H1={ a:5, b: { b1:6, b2:7 } };
-var H2={ b: { b1:6, b2:7 }, a:5 };
-var H3={ a:5, b: { b1:6 } };
-var H4={ a:5, b: { b1:66, b2:7 } };
-var H5={ a:5, b: { b1:6, b2:7, b3:8 } };
-var H6={ a:null, b:undefined, c:Number.NaN };
-var H7={ c:Number.NaN, b:undefined, a:null };
-var H8={a:5,b:6};
-var H9={c:5,d:6};
-var H10={a:5};
 
-function deepComp(obj, obj2){
-    if (obj instanceof Object && obj2 instanceof Object ){
-        let keys=Object.keys(obj)
-        let keys2=Object.keys(obj2)
-        if(keys.length!==keys2.length){
+function deepComp(obj, obj2){    
+
+        if ((obj instanceof Array && !(obj2 instanceof Array))|| (obj2 instanceof Array && !(obj instanceof Array))){
             return false
         }
-        // console.log(keys)
-        for( let i=0;i<keys.length;i++ ){
-            if(obj[keys[i]] instanceof Object){
-                deepComp(obj[keys[i]],obj2[keys[i]])
-                continue
-            }
-            if(obj[keys[i]]!==obj2[keys[i]]){
+        if (obj instanceof Object && obj2 instanceof Object ){
+            let keys1=Object.keys(obj)
+            keys1 = keys1.sort()
+            let keys2=Object.keys(obj2)
+            keys2 = keys2.sort()
+
+            
+
+            if(keys1.length!=keys2.length){
                 return false
             }
-        } 
-        return true
-    }
+
+            for( let i=0;i<keys1.length;i++ ){
+                let keys1=Object.keys(obj)
+                if(keys1[i]!==keys2[i]){
+                    console.log(keys1[i]+"  "+ keys2[i])
+                    return false
+                }
+                if(obj[keys1[i]] instanceof Object){
+                let int = deepComp(obj[keys1[i]],obj2[keys1[i]])
+                if (int == false){
+                    return false
+                }
+                else{
+                    continue
+                }
+                    
+                }
+                if(obj[keys1[i]] !==obj2[keys1[i]] && !(Number.isNaN(obj[keys1[i]]) && Number.isNaN(obj2[keys1[i]]))){
+                    
+                    return false
+                }
+            } 
+            return true
+        }
+
+        else if( obj===obj2 || (Number.isNaN(obj) && Number.isNaN(obj2))){
+            return true
+        }
+    return false
 }
-console.log(deepComp(H1,H2))
-
-console.log( deepComp(H1,H3))
-console.log(deepComp(H1,H4))//
-console.log( deepComp(H1,H5))//
-console.log(deepComp(H6,H7))//
-console.log( deepComp(H8,H9))
-console.log(deepComp(H8,H10))
-console.log(deepComp(null,H10))
-console.log(deepComp(H10,null))
-console.log(deepComp(null,null))
-console.log(deepComp(null,undefined))
-
-
-
-// script.js:30 true +
-// script.js:31 true -
-// script.js:32 true -
-// script.js:33 false - 
-// script.js:34 false +
-// script.js:35 false +
-// script.js:36 undefined
-// script.js:37 undefined
-// script.js:38 undefined
-// script.js:39 undefined
 
 
 
@@ -70,15 +61,23 @@ console.log(deepComp(null,undefined))
 // deepComp(H8,H9) будет false
 // deepComp(H8,H10) будет false
 // deepComp(null,H10) будет false
-//  будет false
-// ) будет true
-//  будет false
-// будет false
-//  будет false
-//  будет false
-//  будет false
+// deepComp(H10,null) будет false
+
+// deepComp(null,null) будет true
+// deepComp(null,undefined) будет false
+
+// deepComp(5,"5") будет false
+
+// deepComp(5,H1) будет false
+// deepComp(A1,H1) будет false
+// deepComp(A2,A3) будет false
 // deepComp( {a:5,b:undefined}, {a:5,c:undefined} ) будет false
-// deepComp([5,7],{0:5,1:7}) будет false
 // deepComp( [5,7],{0:5,1:7,length:2} ) будет false
 // deepComp("aaa","bbb") будет false
 // deepComp(Number.NaN,Number.NaN) будет true
+
+
+// deepComp([5,7],{0:5,1:7}) будет false
+
+
+
