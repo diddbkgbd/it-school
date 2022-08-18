@@ -24,13 +24,26 @@ mess.addEventListener("click", messValid)
 desc.addEventListener("blur", descValid)
 form.addEventListener("submit", check)
 
+
+
+
+function checkRus(str){
+    const cyrillicPattern = /^[\u0400-\u04FF]+$/;
+    return cyrillicPattern.test(str)
+}
+function checkEng(str){
+    const cyrillicPattern =  /^[A-Za-z0-9]*$/;
+    return cyrillicPattern.test(str)
+}
+
+
 function devValid(eo){
     eo = eo||window.target
     let dev = document.getElementById("dev");
     let value = dev.value.trim();
     let error = document.getElementById("error-dev")
-    if (!value || value.lenght<30){
-        error.innerHTML = "Имя разработчиков должно не быть пустым и быть менее 30 символов";
+    if (!value || value.lenght<30 || !checkRus(value) ){
+        error.innerHTML = "Имя разработчиков должно состоять из русских букв, не быть пустым и быть менее 30 символов";
         // eo.preventDefault()
         return false ;
     }
@@ -45,8 +58,8 @@ function siteValid(eo){
     let site = document.getElementById("site");
     let value = site.value.trim();
     let error = document.getElementById("error-site")
-    if (!value || value.lenght<30 ){
-        error.innerHTML = "URL сайта должно не быть пустым и быть менее 30 символов";
+    if (!value || value.lenght<30 ||!checkEng(value) ){
+        error.innerHTML = "URL сайта должно состоять из АНГЛ букв,  не быть пустым и быть менее 30 символов";
         // eo.preventDefault()
         return false ;
     }
@@ -112,8 +125,8 @@ function mailValid(eo){
     let names = document.getElementById("mail");
     let value = names.value.trim();
     let error = document.getElementById("error-mail")
-    if (!value || value.lenght<30|| !value.includes("@")){
-        error.innerHTML = "E-mail для связи должно не быть пустым, должно содержать '@' и быть менее 30 символов";
+    if (!value || value.lenght<30 || !value.includes("@")){
+        error.innerHTML = "E-mail для связи должно не быть пустым, должно состоять из АНГЛ букв и содержать '@' и быть менее 30 символов";
         // eo.preventDefault()
         return false ;
     }
@@ -186,8 +199,8 @@ function descValid(eo){
     let names = document.getElementById("desc");
     let value = names.value.trim();
     let error = document.getElementById("error-descrip")
-    if (!value || value.lenght<30){
-        error.innerHTML = "Описание сайта должно не быть пустым и быть менее 30 символов";
+    if (!value || value.lenght<30|| !checkRus(value)){
+        error.innerHTML = "Описание сайта должно на русском языке,  не быть пустым и быть менее 30 символов";
         // eo.preventDefault()
         return false ;
     }
