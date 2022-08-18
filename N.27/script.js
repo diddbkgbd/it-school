@@ -241,8 +241,8 @@ function check(eo){
     let ok = true;
 
     ok = devValid(ok) && ok;
-    ok = siteValid(true) && ok;
     ok = namesValid(ok) && ok;
+    ok = siteValid(ok) && ok;
     ok = dateValid(ok) && ok;
     ok = kolValid(ok) && ok;
     ok = mailValid(ok) && ok;
