@@ -65,7 +65,6 @@ function siteValid(fcs){
     let error = document.getElementById("error-site")
     if (!value || value.lenght<30 ||!checkEng(value) ){
         error.innerHTML = "URL сайта должно состоять из АНГЛ букв,  не быть пустым и быть менее 30 символов";
-        // eo.preventDefault()
         if(fcs){
             site.focus()
             
@@ -239,24 +238,24 @@ function descValid(fcs){
 
 function check(eo){
     eo = eo||window.target
-    let a= devValid(true)
-    let b = siteValid(true)
-    let c = namesValid(true)
-    let d= dateValid(true)
-    let i= kolValid(true)
-    let k= mailValid(true)
-    let m= adderValid()
-    let p= placeValid(true)
-    let f= messValid(true)
-    let g= descValid(true)
+    let ok = true;
 
-    console.log(a+b+c+d+i+k+m+p+f+g)
+    ok = devValid(ok) && ok;
+    ok = siteValid(true) && ok;
+    ok = namesValid(ok) && ok;
+    ok = dateValid(ok) && ok;
+    ok = kolValid(ok) && ok;
+    ok = mailValid(ok) && ok;
+    ok = adderValid(ok) && ok;
+    ok = placeValid(ok) && ok;
+    ok = messValid(ok) && ok;
+    ok = descValid(ok) && ok;
 
-    if (!(a && b && c && d &&i && k && m && p && f && g)) {
-        eo.preventDefault()
-        return
+    if(!ok) {
+        eo.preventDefault();
     }
-   
+
+ 
 
 
 }
