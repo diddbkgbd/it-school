@@ -225,6 +225,7 @@ function check(eo){
 
     if (!(a && b && c && d &&i && k && m && p && f && g)) {
         eo.preventDefault()
+        return
     }
-  
+
 }
