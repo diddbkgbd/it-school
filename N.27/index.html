@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form name = "FORMIN" action="https://fe.it-academy.by/TestForm.php">
+  
+            Разработчики: 
+            <input type="text" name ="dev" id="dev">
+            <span id="error-dev"></span>
+            <br>
+            <br>
+
+            Название сайта: 
+            <input type="text" id="name" name ="name">
+            <span id="error-name"></span>
+            <br>
+            <br>
+ 
+            URL сайта: 
+            <input type="text" id="site" name ="site">
+            <span id="error-site"></span>
+
+            <br>
+            <br>
+
+            Дата запуска сайта: 
+            <input type="date" id="date" name ="date">
+            <span id="error-date"></span>
+
+            <br>
+            <br>
+
+
+            Посетители сайта в сутки: 
+            <input type="number" id="kol"  name ="kol">
+            <span id="error-kol"></span>
+
+            <br>
+            <br>
+
+
+            E-mail для связи: 
+            <input type="mail" id="mail"name ="mail">
+            <span id="error-mail"></span>
+
+            <br>
+            <br>
+
+
+            Рубрика каталога: 
+            <select name="adder" id="adder">
+                <option value="1">здоровье</option>
+                <option value="2">домашний уют</option>
+                <option value="3">бытовая техника</option>
+            </select>
+            <span id="error-adder"></span>
+
+            <br>
+            <br>
+
+            <div id="place">
+                Размещение: 
+                <input type="radio" name ="field" value="1"> бесплатное
+                <input type="radio" name ="field" value="2"> платное
+                <input type="radio" name ="field" value="3"> VIP
+                <span id="error-radio"></span>
+            </div>
+            
+
+
+            <br>
+            <br>
+
+            Разрешить отзыв: 
+            <input type="checkbox" id="mess" name ="agreed"> 
+            <span id="error-agreed"></span>
+
+
+            <br>
+            <br>
+
+            Описание сайта: 
+            <textarea name="descrip" id="desc" id="text" ></textarea>
+            <span id="error-descrip"></span>
+
+            <br>
+            <br>
+
+        <input type="submit" value="готово">
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
