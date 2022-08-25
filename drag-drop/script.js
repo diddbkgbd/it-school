@@ -7,19 +7,24 @@ function documentReady() {
 
     for (let i=0; i<images.length; i++){
         let image = images[i]
-        var left = getCoords(image).left +"px";
-        image.style.left = left;
+
+        let coord = getCoords(image) ;
+        image.style.left = coord.left+"px";
+        image.style.top = coord.top +"px";
+
         image.addEventListener('mousedown',moveMe,false);
+    }
+
+    for (let i=0; i<images.length; i++){
+        images[i].style.position = "absolute"
         
     }
-    document.styleSheets[0].insertRule("img { position: absolute; }", 0);
 
-    function getCoords(elem) { // кроме IE8-
+    function getCoords(elem) { 
         var box = elem.getBoundingClientRect();
-
         return {
-            top: box.top + pageYOffset,
-            left: box.left + pageXOffset
+            top: box.top,
+            left: box.left
         };
 
     }
