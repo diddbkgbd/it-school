@@ -1,6 +1,7 @@
 "use strict"
 
-window.addEventListener('DOMContentLoaded',documentReady,false);
+
+window.addEventListener('load',documentReady,false);
 
 function documentReady() {
     const images=document.querySelectorAll('img');
