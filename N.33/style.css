@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+body{
+    background-color: aliceblue;
+}
+.input{
+    text-align: center;
+    padding: 50px;
+}
+.input input{ 
+    padding: 5px;
+    outline: none;
+    display: block;
+    width: 30%;
+    margin: 20px auto;
+}
+button{
+    background-color: aquamarine;
+    border: 2px solid rgb(80, 80, 190);
+    padding: 5px;
+    border-radius: 25px;
+}
+.clock{
+    width: 800px;
+    height:800px;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
+}
+.line{
+    background-color: black;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform-origin: top right;
+  
+    /* transform: translate(0px, -100%); */
+}
+.hour{
+    width: 5px;
+    height: 20%;
+ 
+}
+.minut{
+    width: 3px;
+    background-color: red;
+    height: 30%;
+
+}
+.sec{
+    width: 2px;
+    background-color: green;
+    height: 45%;
+
+}
+.center{
+    width: 5%;
+    height: 5%;
+    background-color: black;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+    z-index: 2;
+}
+
+
+
+
+.clock-item{
+    width: 10%;
+    height: 10%;
+    background-color: aqua;
+    border-radius: 50px;
+    position: absolute;
+    right: 50%;
+    transform:  translate(25%, -25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-conteiner{
+    display: none;
+}
+.conteiner{
+    padding: 200px;
+}
