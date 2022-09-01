@@ -1,7 +1,7 @@
 let conteinerInput =document.querySelector('.input')
 let conteinerClock =document.querySelector('.clock-conteiner')
 
-let sec=180; //поворот  стрелок(градусы), 180 - чтоб 0-ое значение было в 00:00:00
+let sec=180; //поворот стрелок(градусы), 180 - чтоб 0-ое значение было в 00:00:00
 let min =180;
 let hour=180;
 
