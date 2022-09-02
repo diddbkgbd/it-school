@@ -1,32 +1,34 @@
 let conteinerInput =document.querySelector('.input')
 let conteinerClock =document.querySelector('.clock-conteiner')
+let time = document.querySelector('.time')
 
 let sec=180; //поворот стрелок(градусы), 180 - чтоб 0-ое значение было в 00:00:00
 let min =180;
 let hour=180;
 
 let deg = 6;//размер одного поворота в грудусах за секунду (6=360:60 )
-let degh=0.5//(0.5 - кол-во градусов, на сколько сдвигается
+let degh=0.5;//(0.5 - кол-во градусов, на сколько сдвигается
 // каждую минуту часовая стрелка, при учете, что весь круг мы пройдем за 12 часов - 360 градусов:12 часов:60 минут)
-
+let deghfull =30; //кол-во градусов, сколько часовая стрелка проходит за один час (360:12)
 
 
 document.querySelector('.add').onclick=function creatClock(){
 
     conteinerInput.style.display ="none"
-   conteinerClock.style.display ="block"
+    conteinerClock.style.display ="block"
 
     let date=new Date()
 
     let hourN= date.getHours()
     let minN = date.getMinutes()
     let secN = date.getSeconds()
+ 
 
     console.error("Текущее время: "+hourN+"."+minN+"."+secN)
 
     sec= sec+(secN*deg)
     min= min+(minN*deg)
-    hour= hour+(hourN*deg)+(minN*degh)
+    hour= hour+(hourN*deghfull)+(minN*degh)
 
     pos()
 
@@ -46,8 +48,8 @@ document.querySelector('.add').onclick=function creatClock(){
         let minN = date.getMinutes()
         let secN = date.getSeconds()
 
+        time.innerHTML =hourN+":"+minN+":"+secN
 
-        console.log("Текущее время: "+hourN+"."+minN+"."+secN)
 
         document.querySelector('.sec').style.transform='rotate('+sec+'deg)';
         document.querySelector('.minut').style.transform='rotate('+min+'deg)';
@@ -61,8 +63,10 @@ document.querySelector('.add').onclick=function creatClock(){
 
         sec=sec+deg;
     }
-    function pos(){
 
+
+
+    function pos(){
 
         const diamentr=parseFloat(document.querySelector('.diament').value)
         let clock =document.querySelector(".clock")
