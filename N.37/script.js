@@ -111,9 +111,9 @@ function pos(){
 
 
     for( let i=1;i<12;i++){
-        let face = document.querySelector("#face")
+        let face = document.querySelector("#one")
             let div=document.createElement("g");
-            let raund=document.createElement("circle");
+            let raund=document.createElement('circle');
             raund.setAttribute("r",15)
 
             let text =document.createElement("text");
