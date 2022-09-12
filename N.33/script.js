@@ -25,7 +25,7 @@ document.querySelector('.add').onclick=function creatClock(){
  
 
     console.error("Текущее время: "+hourN+"."+minN+"."+secN)
-
+    // начальная точка 
     sec= sec+(secN*deg)
     min= min+(minN*deg)
     hour= hour+(hourN*deghfull)+(minN*degh)
