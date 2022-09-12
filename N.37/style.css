@@ -41,8 +41,9 @@ body {
 
   
 
-.clock-conteine {
+.clock-conteiner {
   text-align: center;
+  display: none;
   }
   
 .clockbox, #clock {

@@ -55,6 +55,11 @@ const runClock = () => {
 
  
 document.querySelector('.add').onclick=function creatClock(){
+    let input = document.querySelector(".input")
+    input.style.display= "none"
+    let clockConteiner= document.querySelector(".clock-conteiner")
+
+    clockConteiner.style.display="block"
 
     const date = new Date();
 
