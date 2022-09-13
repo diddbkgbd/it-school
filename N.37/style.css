@@ -60,15 +60,15 @@ body {
     stroke-miterlimit: 10;
   }
   .clock-item  {
-    fill: red;
-    stroke: #000;
+    fill: rgb(208, 214, 227);
+    stroke: rgb(95, 84, 84);
     stroke-width: 1;
     stroke-miterlimit: 10;
   }
 
   
   .mid-circle {
-    fill: #000;
+    fill: black;
   }
   
   .hour-marks {

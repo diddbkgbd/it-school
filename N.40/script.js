@@ -110,6 +110,7 @@ document.querySelector('.add').onclick=function analogClock () {
      ctx.restore();
     }
     
+    updateClock()
     function initClock() {
      window.setInterval(updateClock, 1000); 
     }

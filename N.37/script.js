@@ -97,7 +97,7 @@ document.querySelector('.add').onclick=function creatClock(){
     clock.style.width = width+"px"
     clock.style.height = width+"px"
 
-
+    pos()
     setInterval(runClock, 1000);
 
 }
@@ -105,32 +105,43 @@ document.querySelector('.add').onclick=function creatClock(){
 
 function pos(){
     const clock = document.querySelector("#clock");
-    const radius = 400
+    const width =document.querySelector('input').value
+    const radius = 250 // радиус круга часов
+    
     const angle =30/180*Math.PI
 
     let center = document.querySelector('.mid-circle')
 
-    let centerCenterX= 300
-    let centerCenterY= 300
+    let centerCenterX= 300+8
+    let centerCenterY= 300+8
 
 
-
-    for( let i=1;i<12;i++){
+    for( let i=1;i<13;i++){
         let face = document.querySelector("#one")
-            let div=document.createElement("g");
-            let raund=document.createElement('circle');
-            raund.setAttribute("r",15)
+            let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-            let text =document.createElement("text");
+            let raund = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            raund.setAttributeNS(null,"r",15)
+
+            let text =document.createElementNS("http://www.w3.org/2000/svg","text");
+            text.setAttribute("text-anchor", "middle")
 
             raund.classList.add("clock-item")
             text.textContent=i
-            div.appendChild(raund)
-            div.appendChild(text)
-            face.appendChild(div)
 
-        let clockItemcenterX = radius*Math.sin(angle*i) 
-        let clockItemcenterY = radius*Math.sin(angle*i)
+            g.appendChild(raund)
+            g.appendChild(text)
+            
+
+            face.appendChild(g)
+
+           
+            let clockItemcenterX = centerCenterX +radius*Math.sin(angle*i) 
+            let clockItemcenterY = centerCenterY -radius*Math.cos(angle*i)
+    
+            // div.style.left =Math.round(clockItemcenterX - div.offsetWidth/2)+'px';
+            // div.style.top =Math.round(clockItemcenterY - div.offsetHeight/2)+'px';
+
 
         let left =Math.round(clockItemcenterX - 7.5);
         let top =Math.round(clockItemcenterY - 7.5);
@@ -138,13 +149,13 @@ function pos(){
         raund.setAttribute("cx",left)
         raund.setAttribute("cy",top)
         text.setAttribute("x",left)
-        text.setAttribute("y",top)
+        text.setAttribute("y",top+6)
 
             
     }
     
 }
-pos()
+
 
 
 // let container = document.querySelector("#face")
