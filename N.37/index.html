@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="input">
+
+            <input type="number" class="diament" placeholder="Введите диметр часов">
+            <button class="add">Построить часы!</button>
+        </div>
+        
+
+        <div class="clock-conteiner">
+            <div class="clockbox">
+                <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 600 600">
+                    <g id="face">
+                        <circle class="circle" cx="300" cy="300" r="253.9" />
+                        <text id="time" x="50%" y="20%">23/00/00</text>
+                       
+                        <g id="one">
+                           
+                        </g> 
+                        <circle class="mid-circle" cx="300" cy="300" r="16.2" />
+                        </g>
+                        <g id="hour">
+                        <path class="hour-arm" d="M300.5 298V142" />
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+                        </g>
+                        <g id="minute">
+                        <path class="minute-arm" d="M300.5 298V67" />
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+                        </g>
+                        <g id="second">
+                        <path class="second-arm" d="M300.5 350V55" />
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+                    </g>
+                    <use xlink:href="#one" />
+              </svg>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
