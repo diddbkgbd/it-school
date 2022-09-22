@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: bisque;
+}
+.play-fild{
+    margin: 50px auto;
+    border: 1px solid black;
+    width: 1000px;
+    height: 600px;
+    background-color: azure;
+    position: relative;
+}
+.left{
+    width: 30px;
+    height: 150px;
+    background-color: green;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 15px;
+}
+.right{
+    width: 30px;
+    height: 150px;
+    background-color: yellow;
+    position: absolute;
+    transform: translate(50%, -50%);
+    top: 50%;
+    right: 15px;
+}
+.cicle{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    border-radius: 45px;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    right: 50%;
+}
+
+.start{
+    margin: 10px auto;
+    display: block;
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    color: white;
+}
+.score{
+    display: block;
+    border-bottom: 2px solid red  ;
+    width: 400px;
+    margin: auto;
+    font-size:40px;
+    text-align: center;
+}
