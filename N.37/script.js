@@ -96,7 +96,7 @@ document.querySelector('.add').onclick=function creatClock(){
     clockbox.style.height = width+"px"
     clock.style.width = width+"px"
     clock.style.height = width+"px"
-
+    runClock()
     pos()
     setInterval(runClock, 1000);
 
@@ -107,7 +107,7 @@ function pos(){
     const clock = document.querySelector("#clock");
     const width =document.querySelector('input').value
     const radius = 250 // радиус круга часов
-    
+
     const angle =30/180*Math.PI
 
     let center = document.querySelector('.mid-circle')
