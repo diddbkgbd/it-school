@@ -157,10 +157,10 @@ function keyUpHandler(e) {
 function draw() {
     
     if(downPressed && leftH.posY < areaH.height-leftH.height/2) {
-        leftH.posY += 7;
+        leftH.posY += 5;
     }
     else if(upPressed && leftH.posY > leftH.height/2) {
-        leftH.posY -= 7;
+        leftH.posY -= 5;
     }
 
     leftH.update();
