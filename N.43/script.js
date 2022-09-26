@@ -1,16 +1,22 @@
 var ballElem=document.getElementById('IBall');
 
 let countLeft =0
-let countRight =0
+let countRight =0 
 
 const score = document.getElementById('score');
 score.innerHTML = countLeft +":" +countRight
 
+let canIncrease = true //переменная, которая говорит можн ли увеличивать счет или нет
+
+
+
+//запуск единого таймера 
+requestAnimationFrame(tick);
+
+
+
+
 let ballH={
-    posX : 500,
-    posY : 300,
-    speedX : 3,
-    speedY : 3,
     width : 25,
     height: 25,
 
@@ -25,100 +31,122 @@ const areaH={
     width : 1000,
     height : 600
 }
-setInterval(draw, 10);
+
+
+
 
 function start() {
-    let ballH={
-        posX : 500,
-        posY : 300,
-        speedX : 3,
-        speedY : 3,
-        width : 25,
-        height: 25,
-    
-        update : function() {
-            var ballElem=document.getElementById('IBall');
-            ballElem.style.left=this.posX+"px";
-            ballElem.style.top=this.posY+"px";
-        }
-    }
-    
-    document.addEventListener("mousemove", mouseMoveHandler, false);
-    requestAnimationFrame(tick);
+
+    ballH.posX = 500
+    ballH.posY = 300
+    ballH.speedX= 3
+    ballH.speedY= 3
+    canIncrease = true
+} 
+
+
+
    
 
-    function tick() {
-        ballH.posX+=ballH.speedX;
+    
 
 
-        ballH.posY+=ballH.speedY;
-        // вылетел ли мяч ниже пола?
-        if ( ballH.posY+ballH.height>areaH.height ) {
-            ballH.speedY=-ballH.speedY;
-            ballH.posY=areaH.height-ballH.height;
-            vibro(false);
-        }
-        // вылетел ли мяч выше потолка?
-        if ( ballH.posY<=ballH.height ) {
-            ballH.speedY=-ballH.speedY;
-            ballH.posY=25;
-            vibro(false);
-        }
 
-        if (collision(leftH, ballH)){
-            ballH.speedX=-ballH.speedX;
-            ballH.posX=leftH.posX+ballH.width+leftH.width/2;
-            vibro(true);
-        }
+function tick() {
 
-        if(collision(rightH, ballH)){
-            ballH.speedX=-ballH.speedX;
-            ballH.posX=rightH.posX-ballH.width - rightH.width/2;
-            vibro(false);
-        }
-        
-        // вылетел ли мяч правее стены?
-        if ( ballH.posX+ballH.width>=areaH.width ) {
+    ballH.posX+=ballH.speedX;
+    ballH.posY+=ballH.speedY;
+
+    // вылетел ли мяч ниже пола?
+    if ( ballH.posY+ballH.height>areaH.height ) {
+        ballH.speedY=-ballH.speedY;
+        ballH.posY=areaH.height-ballH.height;
+        vibro(false);
+    }
+    // вылетел ли мяч выше потолка?
+    if ( ballH.posY<=ballH.height ) {
+        ballH.speedY=-ballH.speedY;
+        ballH.posY=25;
+        vibro(false);
+    }
+
+    if (collision(leftH, ballH)){
+        ballH.speedX=-ballH.speedX;
+        ballH.posX=leftH.posX+ballH.width+leftH.width/2;
+        vibro(true);
+    }
+
+    if(collision(rightH, ballH)){
+        ballH.speedX=-ballH.speedX;
+        ballH.posX=rightH.posX-ballH.width - rightH.width/2;
+        vibro(false);
+    }
+    
+   
+    // вылетел ли мяч правее стены?
+    if ( ballH.posX+ballH.width>=areaH.width ) {
+        if(canIncrease)  {
             countRight++
-            score.innerHTML = countLeft +":" +countRight
-            return
-        
         }
-        // вылетел ли мяч левее стены?
-        if ( ballH.posX<25) {
+        canIncrease=false
+        score.innerHTML = countLeft +":" +countRight
+        ballH.speedX=0
+        ballH.speedY=0
+        
+    }
+
+    // вылетел ли мяч левее стены?
+    if ( ballH.posX<25) {
+        if(canIncrease) {
             countLeft++
-            score.innerHTML = countLeft +":" +countRight
-            return
+        } 
+        canIncrease=false
+        score.innerHTML = countLeft +":" +countRight
+        ballH.speedX=0
+        ballH.speedY=0
         
-        }
-
-        ballH.update();
-
-        requestAnimationFrame(tick);
-        ballH.update();
-
-        function vibro(longFlag) {
-            // есть поддержка Vibration API?
-            if ( navigator.vibrate ) {
-                if ( !longFlag ) {
-                    // вибрация 100мс
-                    window.navigator.vibrate(100);
-                }
-                else {
-                    // вибрация 3 раза по 100мс с паузами 50мс
-                    window.navigator.vibrate([100,50,100,50,100]);
-                }
+    
+    }
+    
+    function vibro(longFlag) {
+        // есть поддержка Vibration API?
+        if ( navigator.vibrate ) {
+            if ( !longFlag ) {
+                // вибрация 100мс
+                window.navigator.vibrate(100);
+            }
+            else {
+                // вибрация 3 раза по 100мс с паузами 50мс
+                window.navigator.vibrate([100,50,100,50,100]);
             }
         }
     }
+
+    draw()
+    requestAnimationFrame(tick);
+    ballH.update();
 }
+
+
+
+
+function draw() {
+
+    if(downPressed && leftH.posY < areaH.height-leftH.height/2) {
+        leftH.posY += 5;
+    }
+    else if(upPressed && leftH.posY > leftH.height/2) {
+        leftH.posY -= 5;
+    }
+
+    leftH.update();
+}
+
 
 // control left paddle
 
 var downPressed = false;
 var upPressed = false;
-
-
 
 let leftH={
     posX : 15,
@@ -134,6 +162,7 @@ let leftH={
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
 
 function keyDownHandler(e) {
     if(e.keyCode == 17) {
@@ -154,17 +183,7 @@ function keyUpHandler(e) {
 }
 
 
-function draw() {
-    
-    if(downPressed && leftH.posY < areaH.height-leftH.height/2) {
-        leftH.posY += 5;
-    }
-    else if(upPressed && leftH.posY > leftH.height/2) {
-        leftH.posY -= 5;
-    }
 
-    leftH.update();
-}
 
 // control right paddle
 
@@ -185,12 +204,18 @@ var paddleX = (areaH.width-rightH.width)/2;
 let rightpaddle = document.querySelector(".right")
 let field = document.querySelector(".play-fild")
 
+
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
 function mouseMoveHandler(e) {
     rightH.posY = e.clientY - field.offsetTop; //координаты центра правой ракетки
     if(rightH.posY > rightH.height/2 && rightH.posY < areaH.height-rightH.height/2) {
         rightpaddle.style.top = rightH.posY+"px"
     }
 }
+
+
+
 // отбивание мяча 
 
 function collision(objA, objB) {
@@ -204,5 +229,5 @@ function collision(objA, objB) {
         }
         else {
             return false;
-            }
-    }
+        }
+}
