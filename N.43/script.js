@@ -39,17 +39,11 @@ function start() {
 
     ballH.posX = 500
     ballH.posY = 300
-    ballH.speedX= 3
-    ballH.speedY= 3
+    ballH.speedX= 2
+    ballH.speedY= 2
     canIncrease = true
+
 } 
-
-
-
-   
-
-    
-
 
 
 function tick() {
@@ -69,6 +63,8 @@ function tick() {
         ballH.posY=25;
         vibro(false);
     }
+
+    //otbit myach
 
     if (collision(leftH, ballH)){
         ballH.speedX=-ballH.speedX;
@@ -149,7 +145,7 @@ var downPressed = false;
 var upPressed = false;
 
 let leftH={
-    posX : 15,
+    posX : 25,
     posY : 300,
     width : 30,
     height: 150,
@@ -188,7 +184,7 @@ function keyUpHandler(e) {
 // control right paddle
 
 let rightH={
-    posX : 985,
+    posX : 970,
     posY : 300,
     width : 30,
     height: 150,
@@ -220,9 +216,7 @@ function mouseMoveHandler(e) {
 
 function collision(objA, objB) {
 
-        if(objA.posX <= objB.posX + objB.width &&
-            objA.posX + objA.width >= objB.posX &&
-            objA.posY <= objB.posY + objB.height &&
+        if(objA.posX <= objB.posX + objB.width && objA.posX + objA.width >= objB.posX && objA.posY <= objB.posY + objB.height &&
             objA.height + objA.posY >= objB.posY){
 
             return true;
