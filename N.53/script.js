@@ -1,9 +1,9 @@
+let storage = localStorage;
 
 class HashStorageClass {
 
-    constructor() {
-      this.storage = new Object();
-  
+    constructor(key) {
+      this.storage = JSON.parse(localStorage.getItem(key))
     }
   
     addValue(key, value) {
@@ -29,14 +29,14 @@ class HashStorageClass {
   }
 
 
-  const drinks = new HashStorageClass()
-  const food = new HashStorageClass()
-  
-  let storage = localStorage;
+  const drinks = new HashStorageClass("drinks")
+  const food = new HashStorageClass("food")
  
-  
 
-  
+  console.log(drinks.storage)
+  console.log(food.storage)
+
+
   function VVOD() {
     console.log("test")
     let nameI = prompt("Введите имя")

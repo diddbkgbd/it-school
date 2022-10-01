@@ -1,22 +1,21 @@
-// https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json
-// https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json
 testLoadData()
 
 function testLoadData() {
-    $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json",
-        { type:'GET', dataType:'text', success:creatForm, error:errorHandler }
-    );
-    $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json",
-    { type:'GET', dataType:'text', success:creatForm, error:errorHandler }
-);
+    
+    $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json",{
+         type:'GET',
+         dataType:'text', 
+         success:function(data){
+            creatForm(data)
+            $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json",
+                { type:'GET', dataType:'text', success:creatForm, error:errorHandler }
+            );
+        }, 
+        error:errorHandler 
+    });
+
 }
 
-
-// function testLoadData() {
-//     $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json",
-//         { type:'GET', dataType:'text', success:creatForm, error:errorHandler }
-//     );
-// }
 
 
 function errorHandler(jqXHR,statusStr,errorStr) {
