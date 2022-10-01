@@ -1,5 +1,4 @@
 
-
 class HashStorageClass {
 
     constructor() {
@@ -34,11 +33,7 @@ class HashStorageClass {
   const food = new HashStorageClass()
   
   let storage = localStorage;
-  // storage.clear()
-  
-  
-  storage.setItem("drinks",drinks)
-  storage.setItem("food",food)
+ 
   
 
   
@@ -49,7 +44,6 @@ class HashStorageClass {
     let rec = prompt("Напишите рецепт приготовления")
     console.log(drinks.addValue(nameI, { col, rec }))
 
-    storage.removeItem("drinks")
      storage.setItem("drinks", JSON.stringify(drinks))
   }
   
@@ -72,7 +66,7 @@ class HashStorageClass {
     if (drinks.deleteValue(nameV)) {
       console.log("item was deleted")
 
-      storage.removeItem("drinks")
+
       storage.setItem("drinks", JSON.stringify(drinks))
     }
     else {
@@ -95,8 +89,7 @@ class HashStorageClass {
     let rec = prompt("Напишите рецепт приготовления")
     console.log(food.addValue(nameI, { col, rec }))
 
-    
-    storage.removeItem("food")
+  
      storage.setItem("food", JSON.stringify(food))
   }
   
