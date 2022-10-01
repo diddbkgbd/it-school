@@ -1,3 +1,5 @@
+
+
 class HashStorageClass {
 
     constructor() {
@@ -28,15 +30,16 @@ class HashStorageClass {
   }
 
 
-
   const drinks = new HashStorageClass()
   const food = new HashStorageClass()
-
+  
   let storage = localStorage;
-
-
-  storage.setItem(drinks,drinks)
-  storage.setItem(food,food)
+  // storage.clear()
+  
+  
+  storage.setItem("drinks",drinks)
+  storage.setItem("food",food)
+  
 
   
   function VVOD() {
@@ -45,8 +48,9 @@ class HashStorageClass {
     let col = confirm("Нажмите ОК, если напиток алкогольный")
     let rec = prompt("Напишите рецепт приготовления")
     console.log(drinks.addValue(nameI, { col, rec }))
-    storage.removeItem(drinks)
-    storage.setItem(drinks, drinks)
+
+    storage.removeItem("drinks")
+     storage.setItem("drinks", JSON.stringify(drinks))
   }
   
   function GET() {
@@ -67,8 +71,9 @@ class HashStorageClass {
     // drinks.deleteValue(nameV)
     if (drinks.deleteValue(nameV)) {
       console.log("item was deleted")
-      storage.removeItem(drinks)
-      storage.setItem(drinks, drinks)
+
+      storage.removeItem("drinks")
+      storage.setItem("drinks", JSON.stringify(drinks))
     }
     else {
       console.log("item not be found")
@@ -83,17 +88,16 @@ class HashStorageClass {
   
 
 
-
-
-
-
 // foods    
   function VVOD_food() {
-    console.log("test")
     let nameI = prompt("Введите имя")
-    let col = confirm("Нажмите ОК, если напиток алкогольный")
+    let col = confirm("Нажмите ОК, если напиток вегетеріанский")
     let rec = prompt("Напишите рецепт приготовления")
     console.log(food.addValue(nameI, { col, rec }))
+
+    
+    storage.removeItem("food")
+     storage.setItem("food", JSON.stringify(food))
   }
   
   function GET_food() {
@@ -105,7 +109,7 @@ class HashStorageClass {
     }
     let valuee_alco = valuee.col
     let valuee_res = valuee.rec
-    console.warn("Name -  " + nameV + "\n Alco -  " + valuee_alco + "\n Recepie - " + valuee_res)
+    console.warn("Name -  " + nameV + "\n Veget -  " + valuee_alco + "\n Recepie - " + valuee_res)
   
   
   }
@@ -114,13 +118,17 @@ class HashStorageClass {
     // drinks.deleteValue(nameV)
     if (food.deleteValue(nameV)) {
       console.log("item was deleted")
+
+      
+    storage.removeItem("food")
+    storage.setItem("food", JSON.stringify(food))
     }
     else {
       console.log("item not be found")
     }
   }
   function LIST_food() {
-    console.warn("List of drinks")
+    console.warn("List of foods")
     console.log(food.getKeys())
   }
   
