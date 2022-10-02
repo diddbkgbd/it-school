@@ -1,14 +1,17 @@
 let storage = localStorage;
 
 class HashStorageClass {
-
-    constructor(key) {
-      this.storage = JSON.parse(localStorage.getItem(key))|| new Object()
+    
+    constructor(key_st) {
+      this.storage = JSON.parse(localStorage.getItem(key_st))|| new Object()
+      this.name = key_st
     }
   
     addValue(key, value) {
       this.storage[key] = value;
+      storage.setItem(this.name,  JSON.stringify(this))
       return this.storage[key]
+
     }
     getValue(key) {
       return this.storage[key];
@@ -18,6 +21,7 @@ class HashStorageClass {
     deleteValue(key) {
       if (key in this.storage) {
         delete this.storage[key];
+        storage.setItem(this.name,  JSON.stringify(this))
         return true;
       }
       return false;
@@ -44,7 +48,7 @@ class HashStorageClass {
     let rec = prompt("Напишите рецепт приготовления")
     console.log(drinks.addValue(nameI, { col, rec }))
 
-     storage.setItem("drinks", JSON.stringify(drinks))
+     
   }
   
   function GET() {
@@ -65,9 +69,6 @@ class HashStorageClass {
     // drinks.deleteValue(nameV)
     if (drinks.deleteValue(nameV)) {
       console.log("item was deleted")
-
-
-      storage.setItem("drinks", JSON.stringify(drinks))
     }
     else {
       console.log("item not be found")
@@ -88,9 +89,6 @@ class HashStorageClass {
     let col = confirm("Нажмите ОК, если напиток вегетеріанский")
     let rec = prompt("Напишите рецепт приготовления")
     console.log(food.addValue(nameI, { col, rec }))
-
-  
-     storage.setItem("food", JSON.stringify(food))
   }
   
   function GET_food() {
@@ -108,13 +106,9 @@ class HashStorageClass {
   }
   function DELETE_food() {
     let nameV = prompt("Введите имя")
-    // drinks.deleteValue(nameV)
     if (food.deleteValue(nameV)) {
       console.log("item was deleted")
-
-      
-    storage.removeItem("food")
-    storage.setItem("food", JSON.stringify(food))
+      //  storage.removeItem("food")
     }
     else {
       console.log("item not be found")
