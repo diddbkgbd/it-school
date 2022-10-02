@@ -19,6 +19,8 @@ class HashStorageClass {
     };
   
     deleteValue(key) {
+      console.log(this.storage);
+      console.log(this.storage+key);
       if (key in this.storage) {
         delete this.storage[key];
         storage.setItem(this.name,  JSON.stringify(this))
