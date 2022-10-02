@@ -3,7 +3,7 @@ let storage = localStorage;
 class HashStorageClass {
 
     constructor(key) {
-      this.storage = JSON.parse(localStorage.getItem(key))
+      this.storage = JSON.parse(localStorage.getItem(key))|| new Object()
     }
   
     addValue(key, value) {
