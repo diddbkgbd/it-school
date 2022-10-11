@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas { background: rgb(244, 237, 237); }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1200" height="800">
+
+    </canvas>
+
+
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var ballRadius = 80;
+        var x = canvas.width/2;
+        var y = canvas.height-ballRadius;
+        var dx = 2;
+        var dy = -2;
+        var paddleHeight = 10;
+        var paddleWidth = 75;
+        var paddleX = (canvas.width-paddleWidth)/2;
+        var rightPressed = false;
+        var leftPressed = false;
+        var brickRowCount = 5;
+        var brickColumnCount = 3;
+        var brickWidth = 75;
+        var brickHeight = 20;
+        var brickPadding = 10;
+        var brickOffsetTop = 30;
+        var brickOffsetLeft = 30;
+        var score = 0;
+        var lives = 3;
+
+
+        var img=new Image();
+        img.onload=drawBall;
+        img.src='images/ball.png';
+
+        function drawBall() {
+            ctx.drawImage(img,x,y,ballRadius,ballRadius);
+        }
+
+        // drawBall()
+    </script>
+</body>
+</html>

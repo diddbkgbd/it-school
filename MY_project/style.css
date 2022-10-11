@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,200&family=Roboto+Flex:opsz,wght@8..144,300&display=swap');
+
+
+
+canvas {
+     background: #eee; 
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header{
+    background-color: bisque;
+    padding: 10px;
+    text-align: center;
+    height: 5vh;
+}
+
+main{
+    height: 95vh;
+}
+
+.footer{
+    height: 40px;
+    margin-top: -40px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: right;
+}
+
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+}
+
+
+.left-side{
+    width: 800px;
+    background-color: aliceblue;
+    height: 800px;
+    padding: 80px 50px;
+ 
+}
+fieldset{
+   
+    border: 2px dashed blue;
+    padding: 40px;
+    width: 80%;
+    margin: auto;
+  
+}
+
+input{
+    border: 0,5px solid rgb(20, 20, 136);
+    padding: 5px;
+    width: 100%;
+    background-color: inherit;
+    outline: none;
+    margin: 5px;
+    border-radius: 15px;
+}
+#agree{
+    width: 20px;
+    height: 20px;
+}
+.points{
+    margin-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+input[type="button"]{
+    width: 400px;
+    padding: 10px;
+    margin: 30px auto;
+    display: block;
+    
+}
+
+
+.main_logo{
+    width: 1200px;
+    height: 800px
+}
+.rules{
+    margin: 20px 0;
+    text-decoration: underline;
+}
+#Results{
+    display: none;
+}
+#Pause{
+    display: none;
+}
