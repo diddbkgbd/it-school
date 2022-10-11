@@ -1,29 +1,27 @@
-// "use stict"
+"use stict"
 
 //САМА ИГРА!!!!!!
 
-let gameStart = false
 function warning(EO){
     EO = EO||window.event
-    if (gameStart ){
+    console.log("GameStart"+newPlayer.gameStart)
+    if (newPlayer.gameStart ){
         EO.returnValue='А у вас есть несохранённые изменения!';
     };
 
 }
+let gameRun = false
+
 function START (){
-    gameStart=false
 
     window.onbeforeunload= warning
-    window.onhashchange=switchToStateFromURLHash
-
-   
     console.error("START!!!!")
 
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    let gameRun = false
+
    
 
     let startButton = document.getElementById("Start")
@@ -71,9 +69,6 @@ function START (){
     var brick_img=new Image();
     brick_img.src='images/main_5.jpg';
     
-    var score = 0;
-    var lives = 3;
- 
     var bricks = [];
     for(var c=0; c<Brick.column; c++) {
       bricks[c] = [];
@@ -124,9 +119,11 @@ function START (){
             if(Ball.x +Ball.width> b.x && Ball.x < b.x+Brick.width && Ball.y+Ball.height > b.y && Ball.y < b.y+Brick.height) {
               Ball.dy = -Ball.dy;
               b.status = 0;
-              score++;
-              if(score == Brick.column*Brick.row) {
-                alert("YOU WIN, CONGRATS!");
+              newPlayer.score++
+              if(newPlayer.score == Brick.column*Brick.row) {
+                newPlayer.gameStart = false
+                // SendRezult()
+                // alert("YOU WIN, CONGRATS!");
                 resultsGame()
                 
               }
@@ -173,12 +170,12 @@ function START (){
     function drawScore() {
       ctx.font = "16px Arial";
       ctx.fillStyle = "#0095DD";
-      ctx.fillText("Score: "+score, 8, 20);
+      ctx.fillText("Score: "+newPlayer.score, 8, 20);
     }
     function drawLives() {
       ctx.font = "16px Arial";
       ctx.fillStyle = "#0095DD";
-      ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+      ctx.fillText("Lives: "+newPlayer.lives, canvas.width-65, 20);
     }
     
     
@@ -221,8 +218,8 @@ function START (){
             Ball.dy = -Ball.dy;
         }
         else {
-          lives--;
-          if(!lives) {
+          newPlayer.lives--;
+          if(!newPlayer.lives) {
             alert("GAME OVER");
             document.location.reload();
           }
@@ -264,8 +261,8 @@ function START (){
         startButton.style.display = "none"
         pauseButton.style.display = "block"
         gameRun = true;
-        gameStart=true;
-        console.log (gameStart)
+        newPlayer.gameStart=true;
+        console.log (newPlayer.gameStart)
         draw()
     }
 
@@ -279,9 +276,13 @@ function START (){
         resultsButton.style.display = "block"
         gameRun=false;
         resultsButton.addEventListener("click", switchToResultsPage)
-        // draw()
+        
         // document.location.reload();
     }
+
+   
+
+
  }
 
 

@@ -1,10 +1,12 @@
 "use strict";
 
   // SPA
-  window.onhashchange=switchToStateFromURLHash;
-  window.onbeforeunload=switchToStateFromURLHash;
+window.onhashchange=switchToStateFromURLHash;
+window.onbeforeunload=switchToStateFromURLHash;
   
-  let SPAState={};
+let SPAState={};
+
+let newPlayer = new Player();
 
 function switchToStateFromURLHash() {
     var URLHash=window.location.hash;
@@ -13,22 +15,17 @@ function switchToStateFromURLHash() {
     
     if ( stateStr!="" ) { 
       let parts=stateStr.split("_")
-      SPAState={ pagename: parts[0] }; 
-      if(SPAState.pagename =='Game'&& gameStart ==true){
-        warning()
-        alert("Не сохраниться!!!!")
-      }
-      
-      console.log(SPAState.pagename+"_"+gameStart)
+      SPAState={ pagename: parts[0] };     
+      console.log(SPAState.pagename+"_"+newPlayer.gameStart)
     }
     else{
-      if(gameStart ==true){
-        alert("Не сохраниться!!!!")
-      }
       SPAState={pagename:'Main'};
     }
        // иначе показываем главную страницу
-
+    if( newPlayer.gameStart ==true){
+      warning()
+      alert("Не сохраниться!!!!")
+    }
     console.log('Новое состояние приложения:');
     console.log(SPAState);
 
@@ -40,6 +37,7 @@ function switchToStateFromURLHash() {
     let IpageRight = document.getElementById("IpageRight")
     switch ( SPAState.pagename ) {
       case 'Main':
+        newPlayer = new Player
         pageHTML_left ='<img class="main_logo" src="images/main.svg" alt="logo">'
         IPAGE.innerHTML=pageHTML_left;
         pageHTML_right = '<form action=""> <fieldset> <legend>Info</legend> <label for="name">Введите свой Ник:</label> <input type="text" id= "Name"> </fieldset> <div class="points"> <input type="checkbox" name="agree" id="agree">     <label for="agree">Согласен обрабатывать данные </label></div><input id = "Game_page" type="button" onclick="switchToGamePage()"  value="Начать игру"></form>'
@@ -86,9 +84,16 @@ function switchToStateFromURLHash() {
     switchToState( { pagename:'Record' } );
   }
 
+
   switchToStateFromURLHash();
 
- function GetName(){
-    const NICK = document.getElementById("Name").value;
-    console.log (NICK)
- }
+
+function GetName(){
+    let NICK = document.getElementById("Name").value;
+    newPlayer.name = NICK
+    console.log(newPlayer)
+}
+
+
+
+

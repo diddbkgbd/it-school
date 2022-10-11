@@ -6,49 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        canvas { background: rgb(244, 237, 237); }
+        div{
+            background-color: lightblue;
+        }
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="1200" height="800">
+    <br /><br />
+    <div id='IProgress' style='border: solid red 1px; width: 200px; margin: 40px;'>
+        <div id='IProgressPerc' style='background-color: red;
+            height: 20px; width: 0%'>
+            
+        </div>
+    </div>
 
-    </canvas>
-
-
+    <script src='http://fe.it-academy.by/JQ/jquery.js'></script>
 
     <script>
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        var ballRadius = 80;
-        var x = canvas.width/2;
-        var y = canvas.height-ballRadius;
-        var dx = 2;
-        var dy = -2;
-        var paddleHeight = 10;
-        var paddleWidth = 75;
-        var paddleX = (canvas.width-paddleWidth)/2;
-        var rightPressed = false;
-        var leftPressed = false;
-        var brickRowCount = 5;
-        var brickColumnCount = 3;
-        var brickWidth = 75;
-        var brickHeight = 20;
-        var brickPadding = 10;
-        var brickOffsetTop = 30;
-        var brickOffsetLeft = 30;
-        var score = 0;
-        var lives = 3;
-
-
-        var img=new Image();
-        img.onload=drawBall;
-        img.src='images/ball.png';
-
-        function drawBall() {
-            ctx.drawImage(img,x,y,ballRadius,ballRadius);
+    PostData()
+    GetData()
+    function PostData() {
+        PlayerStorage = {
+            1: "12345",
+            2:"1234567890"
         }
+        $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
+                type:'POST', dataType:'json', data:{func:'INSERT',n:"PlayerStorage", v:PlayerStorage},
+                cache:false,
+                success:successLoad(), error:errorHandler,
+            
+            })
+    }
+    function GetData() {
+        $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
+                type:'POST', dataType:'json', data:{func:'READ',n:"PlayerStorage",},
+                cache:false,
+                success:success, complete:complete, error:errorHandler,
 
-        // drawBall()
+            }
+        );
+    }
+    function successLoad(){
+        console.log("SEND")
+    }
+
+    function success(data) {
+        console.log('загруженные через AJAX данные:');
+        console.log(data);
+    }
+
+    function complete() {
+        // document.getElementById('IProgress').style.display="none";
+        alert("done")
+    }
+
+    function errorHandler(jqXHR,statusStr,errorStr) {
+        alert(statusStr+' '+errorStr);
+    }
+    
     </script>
 </body>
 </html>
