@@ -1,39 +1,16 @@
-// class HashStorageClass {
+class PlayerStorage {
     
-//     constructor(key_st) {
-//       this.storage = JSON.parse(localStorage.getItem(key_st)) || new Object()
-//       this.name = key_st
-//       this.score = 0
-//       this.gameSatrt = false
-//       this.gameRun = false
-//     }
-  
-//     addValue(key, value) {
-//       this.storage[key] = value;
-//       storage.setItem(this.name,  JSON.stringify(this))
-//       return this.storage[key]
-
-//     }
-//     getValue(key) {
-//       return this.storage[key];
-  
-//     };
-  
-//     deleteValue(key) {
-//       console.log(this.storage);
-//       console.log(this.storage+key);
-//       if (key in this.storage) {
-//         delete this.storage[key];
-//         storage.setItem(this.name,  JSON.stringify(this))
-//         return true;
-//       }
-//       return false;
-  
-//     }
-//     getKeys() {
-//       return Object.keys(this.storage)
-//     }
-//   }
+    constructor(key_st) {
+      this.storage = GetData() || new Object()
+      this.storage.name = key_st
+      this.storage.score = 0
+      this.storage.gameSatrt = false
+      this.storage.gameRun = false
+    } 
+    addPlayer(Name){
+        this.storage.name = Name;
+    } 
+  }
 class Player {
     constructor(name) {
         this.name = name;
@@ -42,11 +19,6 @@ class Player {
         this.lives = 3;
         this.score=0;
     }
-    // addValue( value) {
-    //     this.name = value;
-    //     return this
-
-    // }
 }
 
 function PostData() {
@@ -75,8 +47,13 @@ function successLoad(){
 }
 
 function success(data) {
-    console.log('загруженные через AJAX данные:');
-    console.log(data);
+    if (data){
+        console.log('загруженные через AJAX данные:');
+        console.log(data);
+        return data;   
+    }
+
+   
 }
 
 function complete() {

@@ -23,47 +23,149 @@
     <script src='http://fe.it-academy.by/JQ/jquery.js'></script>
 
     <script>
-    PostData()
-    GetData()
-    function PostData() {
-        PlayerStorage = {
-            1: "12345",
-            2:"1234567890"
-        }
-        $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-                type:'POST', dataType:'json', data:{func:'INSERT',n:"PlayerStorage", v:PlayerStorage},
-                cache:false,
-                success:successLoad(), error:errorHandler,
-            
-            })
-    }
-    function GetData() {
-        $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-                type:'POST', dataType:'json', data:{func:'READ',n:"PlayerStorage",},
-                cache:false,
-                success:success, complete:complete, error:errorHandler,
-
+        class Player {
+            constructor(name) {
+                this.name = name;
+                this.gameStart = false;
+                this.gameRun = false
+                this.lives = 3;
+                this.score=0;
             }
-        );
-    }
-    function successLoad(){
-        console.log("SEND")
-    }
+        }
 
-    function success(data) {
-        console.log('загруженные через AJAX данные:');
-        console.log(data);
-    }
 
-    function complete() {
-        // document.getElementById('IProgress').style.display="none";
-        alert("done")
-    }
+        let newPlayer = new Player("NICK45")
+        let newPlayer2 = new Player("NICK23")
+        let newPlayer3= new Player("NICK12")
 
-    function errorHandler(jqXHR,statusStr,errorStr) {
-        alert(statusStr+' '+errorStr);
-    }
-    
+        let PlayersList = new Object()
+
+        console.log(PlayersList)
+
+        PlayersList[newPlayer.name] = newPlayer;
+        PlayersList[newPlayer2.name] = newPlayer2;
+        PlayersList[newPlayer3.name] = newPlayer3;
+
+        console.log (PlayersList)
+        // PostData(PlayersList)
+        console.log("______________________new_______________");
+
+     
+
+
+        // function PostData(LIST) { //отправляет список
+
+        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
+        //             type:'POST', dataType:'json', data:{f:"INSERT",n:"result", v:LIST},
+        //             cache:false,
+        //             success:successLoad(), error:errorHandler,
+                
+        //         })
+        // }
+        // function GetData() {// получает данные
+        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
+        //             type:'POST', dataType:'json', data:{f:"READ",n:"PlayerStorage",},
+        //             cache:false,
+        //             success:success, complete:complete, error:errorHandler,
+
+        //         }
+        //     );
+        // }
+             // function successLoad(){
+        //     console.log("SEND")
+        // }
+
+        // function success(data) {
+        //     if (data){
+        //         console.log('загруженные через AJAX данные:');
+        //         console.log(data);
+        //         return data;   
+        //     }
+
+        
+        // }
+
+        // function complete() {
+        //     // document.getElementById('IProgress').style.display="none";
+        //     alert("done")
+        // }
+
+        // function errorHandler(jqXHR,statusStr,errorStr) {
+        //     alert(statusStr+' '+errorStr);
+        // }
+
+
+
+        const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+        let updatePassword;
+        const stringName='DIANA_RESULTS_INFO';
+
+        storeInfo()
+
+        function storeInfo() {
+            updatePassword=Math.random();
+            $.ajax( {
+                    url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                    data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+                    success : lockGetReady, error : errorHandler
+                }
+            );
+        }
+
+
+        function lockGetReady(callresult) {
+            if ( callresult.error!=undefined )
+                alert(callresult.error);
+            else {
+                // нам всё равно, что было прочитано -
+                // всё равно перезаписываем
+                const info={
+                    name : 123,
+                    age : "aaaaaaaa"
+                };
+                $.ajax( {
+                        url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                        data : { f : 'UPDATE', n : stringName,
+                            v : JSON.stringify(info), p : updatePassword },
+                        success : updateReady, error : errorHandler
+                    }
+                );
+            }
+        }
+
+   
+
+        function updateReady(callresult) {
+            if ( callresult.error!=undefined )
+                alert(callresult.error);
+        }
+
+        function restoreInfo() {
+            $.ajax(
+                {
+                    url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                    data : { f : 'READ', n : stringName },
+                    success : readReady, error : errorHandler
+                }
+            );
+        }
+
+        function readReady(callresult) {
+            if ( callresult.error!=undefined )
+                alert(callresult.error);
+            else if ( callresult.result!="" ) {
+                const info=JSON.parse(callresult.result);
+                console.log(info)
+            }
+        }
+
+        function errorHandler(jqXHR,statusStr,errorStr) {
+            alert(statusStr+' '+errorStr);
+        }
+
+        restoreInfo();
+
+            
     </script>
 </body>
 </html>
