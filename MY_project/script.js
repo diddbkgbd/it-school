@@ -119,10 +119,14 @@ function START (){
             if(Ball.x +Ball.width> b.x && Ball.x < b.x+Brick.width && Ball.y+Ball.height > b.y && Ball.y < b.y+Brick.height) {
               Ball.dy = -Ball.dy;
               b.status = 0;
+              
               newPlayer.score++
+              soundhitBlock()
+
               if(newPlayer.score == Brick.column*Brick.row) {
                 newPlayer.gameStart = false
-                // SendRezult()
+                soundWin ()
+                SendRezult(newPlayer)
                 // alert("YOU WIN, CONGRATS!");
                 resultsGame()
                 
@@ -205,6 +209,7 @@ function START (){
     //   collision()
         if (collision(Ball,Paddle)==true){
             Ball.dy = -Ball.dy
+            soundHotRacket ()
         }
     // отбивание от крайов
       if(Ball.x + Ball.dx > canvas.width-Ball.radius || Ball.x + Ball.dx < 0) {
@@ -220,7 +225,7 @@ function START (){
         else {
           newPlayer.lives--;
           if(!newPlayer.lives) {
-            alert("GAME OVER");
+            soundGameOver ()
             document.location.reload();
           }
           else {

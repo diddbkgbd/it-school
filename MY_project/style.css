@@ -103,3 +103,27 @@ input[type="button"]{
 #Pause{
     display: none;
 }
+.IPAGEcontainer{
+    width: 1200px;
+    height: 800px;
+    border:1px solid black;
+    background-color: bisque ;
+    overflow: auto
+}
+.resultTable{
+    width: 50%;
+    margin: 20px auto;
+    background-color: aliceblue;
+    border:1px dotted black;
+    height: 600px;
+
+}
+.resultTable td{
+    padding: 10px;
+}
+.resultTable tr:nth-child(1){
+    color: rgb(24, 31, 158);
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: underline;
+}

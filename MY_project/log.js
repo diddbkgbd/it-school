@@ -53,8 +53,9 @@ function switchToStateFromURLHash() {
         break;
 
       case 'Record':
-        pageHTML_left = ' ResultTablr '
-        IPAGE.innerHTML=pageHTML_left;
+        IPAGE.innerHTML="";
+        resultTableBilding()
+        // IPAGE.innerHTML=resultTableBilding();
         pageHTML_right+='<h1>Поздравляю, Дорогой Друг!</h1> <p class="rules">Данные таблицы:</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam saepe libero tempora consectetur doloribus quo quia dolorum, quasi deserunt blanditiis asperiores possimus hic, id perspiciatis officia natus quae explicabo?</p> <input type="button" id="Main" value="Main!" onclick="switchToMainPage()"> ' 
         IpageRight.innerHTML=pageHTML_right;
         break;
