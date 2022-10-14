@@ -3,6 +3,7 @@
 
 
 canvas {
+    width: 100%;
      background: #eee; 
 }
 
@@ -15,14 +16,13 @@ canvas {
 
 header{
     background-color: bisque;
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
     height: 5vh;
+    width: 100%;
 }
 
-main{
-    height: 95vh;
-}
+
 
 .footer{
     height: 40px;
@@ -37,17 +37,31 @@ main{
 .content{
     display: flex;
     justify-content: space-between;
+    padding: 0 100px;
+    padding-bottom: 40px;
+    min-height: 85vh;
     align-items: center;
-    padding: 30px 100px;
+    gap:100px
 }
 
 
 .left-side{
-    width: 800px;
+    max-width: 600px;
     background-color: aliceblue;
-    height: 800px;
+    max-height: 800px;
     padding: 80px 50px;
- 
+    flex-shrink: 5;
+}
+.right-side{
+    max-width: 1200px;
+    min-width: 800px;
+    max-height: 800px;
+    flex-shrink: 5;
+}
+
+
+.main_logo{
+    width: 100%;
 }
 fieldset{
    
@@ -61,15 +75,17 @@ fieldset{
 input{
     border: 0,5px solid rgb(20, 20, 136);
     padding: 5px;
-    width: 100%;
+    width: 90%;
     background-color: inherit;
     outline: none;
-    margin: 5px;
+    display: block;
+    margin: 5px auto;
     border-radius: 15px;
 }
 #agree{
     width: 20px;
     height: 20px;
+    margin: 0;
 }
 .points{
     margin-top: 30px;
@@ -81,7 +97,7 @@ input{
     gap: 20px;
 }
 input[type="button"]{
-    width: 400px;
+    max-width: 400px;
     padding: 10px;
     margin: 30px auto;
     display: block;
@@ -89,10 +105,7 @@ input[type="button"]{
 }
 
 
-.main_logo{
-    width: 1200px;
-    height: 800px
-}
+
 .rules{
     margin: 20px 0;
     text-decoration: underline;
@@ -126,4 +139,50 @@ input[type="button"]{
     font-weight: bold;
     font-size: 24px;
     text-decoration: underline;
+}
+
+.text{
+    font-weight: bold;
+    font-size: 28px;
+    color: #1f42ad;
+    text-align: center;
+    
+}
+.container{
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+@media (max-width: 1500px) {
+    .content{
+        flex-direction: column;
+        padding: 70px 0px;
+    }
+    .left-side{
+        padding-left: 10px;
+        padding-right: 10px;
+    
+    }
+    .right-side{
+        min-width: 150px;
+    }
+}
+@media (max-width: 550px) {
+    .left-side{
+        width: 300px;
+    
+    }
+    label{
+        font-size: 10px;
+    }
+    .points{
+        gap:2px
+    }
+    fieldset{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

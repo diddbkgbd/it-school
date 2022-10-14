@@ -82,6 +82,7 @@ function switchToStateFromURLHash() {
   }
 
   function switchToResultsPage() {
+    clearTimeout(timer);
     switchToState( { pagename:'Record' } );
   }
 

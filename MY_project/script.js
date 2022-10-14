@@ -5,6 +5,7 @@
 function warning(EO){
     EO = EO||window.event
     console.log("GameStart"+newPlayer.gameStart)
+    console.log(newPlayer.gameStart);
     if (newPlayer.gameStart ){
         EO.returnValue='А у вас есть несохранённые изменения!';
     };
@@ -38,8 +39,8 @@ function START (){
         width: 80, 
         height:80, 
         radius: 80, 
-        dx: 4, 
-        dy:4
+        dx: 6, 
+        dy:6
     }
     
     let Paddle = {
@@ -121,11 +122,19 @@ function START (){
               b.status = 0;
               
               newPlayer.score++
+              phrases = [
+                'Так держать, еще чуть-чуть и выиграем!',
+            ]
               soundhitBlock()
 
               if(newPlayer.score == Brick.column*Brick.row) {
+                phrases = [
+                  'Я верил, что мы победим!',
+              ]
                 newPlayer.gameStart = false
+                
                 soundWin ()
+                
                 SendRezult(newPlayer)
                 // alert("YOU WIN, CONGRATS!");
                 resultsGame()
@@ -198,7 +207,7 @@ function START (){
     }
     
     function draw() {
-        window.onhashchange=switchToStateFromURLHash
+      window.onhashchange=switchToStateFromURLHash
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawPaddle();
       drawBricks();
@@ -206,6 +215,7 @@ function START (){
       drawScore();
       drawLives();
       collisionDetection()
+      next()
     //   collision()
         if (collision(Ball,Paddle)==true){
             Ball.dy = -Ball.dy
@@ -224,8 +234,12 @@ function START (){
         }
         else {
           newPlayer.lives--;
+          phrases = [
+            'Кто не ошибается, не пьет шампанское!',
+        ]
           if(!newPlayer.lives) {
             soundGameOver ()
+            newPlayer.gameStart= false
             document.location.reload();
           }
           else {
@@ -266,12 +280,16 @@ function START (){
         startButton.style.display = "none"
         pauseButton.style.display = "block"
         gameRun = true;
+        next()
         newPlayer.gameStart=true;
         console.log (newPlayer.gameStart)
         draw()
     }
 
     function pauseGame(){
+        phrases = [
+          'Возвращайся, игра ждет тебя!',
+      ]
         gameRun = false
         startButton.style.display = "block"
         pauseButton.style.display = "none"
