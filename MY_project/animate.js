@@ -53,9 +53,7 @@ class TextScramble {
 }
 
 
-let phrases = [
-    'У тебя все получится, Играй!!',
-]
+let phrases = []
 
 const el = document.querySelector('.text')
 const fx = new TextScramble(el)

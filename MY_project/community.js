@@ -1,109 +1,8 @@
-// class PlayerStorage {
-    
-//     constructor(key_st) {
-//       this.storage = GetData() || new Object()
-//       this.storage.name = key_st
-//       this.storage.score = 0
-//       this.storage.gameSatrt = false
-//       this.storage.gameRun = false
-//     } 
-//     addPlayer(Name){
-//         this.storage.name = Name;
-//     } 
-//   }
-
-
-     
-
-
-        // function PostData(LIST) { //отправляет список
-
-        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-        //             type:'POST', dataType:'json', data:{f:"INSERT",n:"result", v:LIST},
-        //             cache:false,
-        //             success:successLoad(), error:errorHandler,
-                
-        //         })
-        // }
-        // function GetData() {// получает данные
-        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-        //             type:'POST', dataType:'json', data:{f:"READ",n:"PlayerStorage",},
-        //             cache:false,
-        //             success:success, complete:complete, error:errorHandler,
-
-        //         }
-        //     );
-        // }
-             // function successLoad(){
-        //     console.log("SEND")
-        // }
-
-        // function success(data) {
-        //     if (data){
-        //         console.log('загруженные через AJAX данные:');
-        //         console.log(data);
-        //         return data;   
-        //     }
-
-        
-        // }
-
-        // function complete() {
-        //     // document.getElementById('IProgress').style.display="none";
-        //     alert("done")
-        // }
-
-        // function errorHandler(jqXHR,statusStr,errorStr) {
-        //     alert(statusStr+' '+errorStr);
-        // }
-        
-        // function PostData() {
-        //     PlayerStorage = {
-        //         1: "12345",
-        //         2:"1234567890"
-        //     }
-        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-        //             type:'POST', dataType:'json', data:{func:'INSERT',n:"PlayerStorage", v:PlayerStorage},
-        //             cache:false,
-        //             success:successLoad(), error:errorHandler,
-                
-        //         })
-        // }
-        // function GetData() {
-        //     $.ajax("https://fe.it-academy.by/AjaxStringStorage2.php", {
-        //             type:'POST', dataType:'json', data:{func:'READ',n:"PlayerStorage",},
-        //             cache:false,
-        //             success:success, complete:complete, error:errorHandler,
-        
-        //         }
-        //     );
-        // }
-        // function successLoad(){
-        //     console.log("SEND")
-        // }
-        
-        // function success(data) {
-        //     if (data){
-        //         console.log('загруженные через AJAX данные:');
-        //         console.log(data);
-        //         return data;   
-        //     }
-        
-           
-        // }
-        
-        // function complete() {
-        //     // document.getElementById('IProgress').style.display="none";
-        //     alert("done")
-        // }
-        
-        // function errorHandler(jqXHR,statusStr,errorStr) {
-        //     alert(statusStr+' '+errorStr);
-        // }
     const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
     let updatePassword;
-    const stringName='DIANA_RESULTS_INFO';
+    // const stringName='DIANA_RESULTS_INFO';
 
+const stringName='DIANA_RESULTS2_INFO';
     
     class Player {
         constructor(name) {
@@ -137,6 +36,7 @@
         console.log("lockGetReady");
         if ( callresult.error!=undefined )
             alert(callresult.error);
+
         else {
             console.warn("lockGetReady" + PlayersList);
             const info=PlayersList;
@@ -155,6 +55,7 @@
     function updateReady(callresult) {
         if ( callresult.error!=undefined )
             alert(callresult.error);
+
         else{
             console.log("ВСЕ ОТПРАВИЛОСЬ!!!!");
         }
@@ -173,8 +74,6 @@
             }
         );
     }
-    // let TESTLIST = new Object
-
     function readReady(callresult) {
         console.log("readReady");
         if ( callresult.error!=undefined )
@@ -199,7 +98,8 @@
 
 
     function errorHandler(jqXHR,statusStr,errorStr) {
-        alert(statusStr+' '+errorStr);
+        // alert(statusStr+' '+errorStr);
+        alert("тут4!!")
     }
 
 

@@ -1,6 +1,6 @@
 "use strict";
 
-  // SPA
+
 window.onhashchange=switchToStateFromURLHash;
 window.onbeforeunload=switchToStateFromURLHash;
   
@@ -45,9 +45,9 @@ function switchToStateFromURLHash() {
         break;
 
       case 'Game':
-        pageHTML_left = ' <canvas id="myCanvas" width="1200" height="800"></canvas> '
+        pageHTML_left = ' <canvas id="myCanvas"  width="1200"  height="800"></canvas>  <div class= "arrowLeft"> </div>  <div class= "arrowRight"> </div>'
         IPAGE.innerHTML=pageHTML_left;
-         pageHTML_right+='<h1>Привет, Дорогой Друг!</h1> <p class="rules">Правила игры:</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam saepe libero tempora consectetur doloribus quo quia dolorum, quasi deserunt blanditiis asperiores possimus hic, id perspiciatis officia natus quae explicabo?</p> <input type="button" id="Start" value="Start!"> <input type="button" id="Pause" value="Pause!"> <input type="button" id="Results" value="Results!">' 
+         pageHTML_right+='<h1>Привет, <span class ="name"></span>!</h1> <p class="rules">Правила игры:</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam saepe libero tempora consectetur doloribus quo quia dolorum, quasi deserunt blanditiis asperiores possimus hic, id perspiciatis officia natus quae explicabo?</p> <input type="button" id="Start" value="Start!"> <input type="button" id="Pause" value="Pause!"> <input type="button" id="Results" value="Results!">' 
         IpageRight.innerHTML=pageHTML_right;
         START()
         break;
@@ -73,12 +73,23 @@ function switchToStateFromURLHash() {
   }
 
   function switchToMainPage() {
-    switchToState( { pagename:'Main' } );
+ 
+      switchToState( { pagename:'Main' } );
+  
+  
   }
 
   function switchToGamePage() {
     GetName()
-    switchToState( { pagename:'Game' } );
+    let value = document.querySelector("#agree").checked
+    console.log(value);
+    if (value){
+      switchToState( { pagename:'Game' } );
+    }
+    else{
+      alert("Поставьте галочку")
+    }
+   
   }
 
   function switchToResultsPage() {

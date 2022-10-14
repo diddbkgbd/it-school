@@ -14,6 +14,7 @@ function warning(EO){
 let gameRun = false
 
 function START (){
+  document.querySelector(".name").innerHTML = newPlayer.name
 
     window.onbeforeunload= warning
     console.error("START!!!!")
@@ -39,8 +40,8 @@ function START (){
         width: 80, 
         height:80, 
         radius: 80, 
-        dx: 6, 
-        dy:6
+        dx: 4, 
+        dy:4
     }
     
     let Paddle = {
@@ -80,7 +81,20 @@ function START (){
     
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
-    canvas.addEventListener("mousemove", mouseMoveHandler, false);
+    document.querySelector(".arrowLeft").addEventListener("touchstart", ()=>{
+      console.log(123);
+      leftPressed = true;
+    })
+    document.querySelector(".arrowRight").addEventListener("touchstart", ()=>{
+      rightPressed = true;
+    })
+    document.querySelector(".arrowLeft").addEventListener("touchend", ()=>{
+      leftPressed = false;
+    })
+    document.querySelector(".arrowRight").addEventListener("touchend", ()=>{
+      rightPressed = false;
+    })
+    // canvas.addEventListener("mousemove", mouseMoveHandler, false);
 
    
     
@@ -104,8 +118,8 @@ function START (){
     }
     
     function mouseMoveHandler(e) {
-    
-      var relativeX = e.clientX - canvas.offsetLeft;
+      console.log( canvas.offsetLeft);
+      let relativeX = e.clientX - canvas.offsetLeft;
       if(relativeX > 0 && relativeX < canvas.width) {
         Paddle.x = relativeX - Paddle.width/2;
       }
@@ -124,19 +138,18 @@ function START (){
               newPlayer.score++
               phrases = [
                 'Так держать, еще чуть-чуть и выиграем!',
-            ]
+              ]
+              next()
               soundhitBlock()
 
               if(newPlayer.score == Brick.column*Brick.row) {
                 phrases = [
                   'Я верил, что мы победим!',
               ]
+                next()
                 newPlayer.gameStart = false
-                
-                soundWin ()
-                
+                soundWin ()          
                 SendRezult(newPlayer)
-                // alert("YOU WIN, CONGRATS!");
                 resultsGame()
                 
               }
@@ -215,9 +228,9 @@ function START (){
       drawScore();
       drawLives();
       collisionDetection()
-      next()
-    //   collision()
-        if (collision(Ball,Paddle)==true){
+      
+
+      if (collision(Ball,Paddle)==true){
             Ball.dy = -Ball.dy
             soundHotRacket ()
         }
@@ -237,6 +250,7 @@ function START (){
           phrases = [
             'Кто не ошибается, не пьет шампанское!',
         ]
+        next()
           if(!newPlayer.lives) {
             soundGameOver ()
             newPlayer.gameStart= false
@@ -280,7 +294,7 @@ function START (){
         startButton.style.display = "none"
         pauseButton.style.display = "block"
         gameRun = true;
-        next()
+
         newPlayer.gameStart=true;
         console.log (newPlayer.gameStart)
         draw()

@@ -46,7 +46,7 @@ header{
 
 
 .left-side{
-    max-width: 600px;
+    width: 600px;
     background-color: aliceblue;
     max-height: 800px;
     padding: 80px 50px;
@@ -57,6 +57,7 @@ header{
     min-width: 800px;
     max-height: 800px;
     flex-shrink: 5;
+    position: relative;
 }
 
 
@@ -117,7 +118,7 @@ input[type="button"]{
     display: none;
 }
 .IPAGEcontainer{
-    width: 1200px;
+    width: 100%;
     height: 800px;
     border:1px solid black;
     background-color: bisque ;
@@ -128,7 +129,7 @@ input[type="button"]{
     margin: 20px auto;
     background-color: aliceblue;
     border:1px dotted black;
-    height: 600px;
+    max-height: 600px;
 
 }
 .resultTable td{
@@ -156,9 +157,30 @@ input[type="button"]{
 }
 
 
+
+
+.arrowRight, .arrowLeft{
+   width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: none;
+    background: url(images/right\ \(2\).png) ;
+    background-size: cover;
+    opacity: 0.3;
+   
+}
+.arrowLeft{
+    left:0 ;
+    background: url(images/left.png);
+    background-size: cover;
+   
+}
 @media (max-width: 1500px) {
     .content{
-        flex-direction: column;
+        flex-direction: column-reverse;
         padding: 70px 0px;
     }
     .left-side{
@@ -167,12 +189,23 @@ input[type="button"]{
     
     }
     .right-side{
-        min-width: 150px;
+        min-width: 600px;
+    }
+    .arrowRight, .arrowLeft{
+        display: block;
+    }
+    .arrowRight, .arrowLeft{
+        width: 50px;
+        height: 50px;
     }
 }
 @media (max-width: 550px) {
     .left-side{
         width: 300px;
+    
+    }
+    .right-side{
+        min-width: 300px;
     
     }
     label{
