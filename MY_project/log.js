@@ -3,7 +3,7 @@
 
 window.onhashchange=switchToStateFromURLHash;
 window.onbeforeunload=switchToStateFromURLHash;
-  
+
 let SPAState={};
 
 let newPlayer = new Player();
@@ -22,7 +22,7 @@ function switchToStateFromURLHash() {
       SPAState={pagename:'Main'};
     }
        // иначе показываем главную страницу
-    if( newPlayer.gameStart ==true){
+    if( newPlayer.gameStart){
       warning()
       alert("Не сохраниться!!!!")
     }
@@ -37,6 +37,7 @@ function switchToStateFromURLHash() {
     let IpageRight = document.getElementById("IpageRight")
     switch ( SPAState.pagename ) {
       case 'Main':
+    
         newPlayer = new Player
         pageHTML_left ='<img class="main_logo" src="images/main.svg" alt="logo">'
         IPAGE.innerHTML=pageHTML_left;
@@ -45,6 +46,7 @@ function switchToStateFromURLHash() {
         break;
 
       case 'Game':
+     
         pageHTML_left = ' <canvas id="myCanvas"  width="1200"  height="800"></canvas>  <div class= "arrowLeft"> </div>  <div class= "arrowRight"> </div>'
         IPAGE.innerHTML=pageHTML_left;
          pageHTML_right+='<h1>Привет, <span class ="name"></span>!</h1> <p class="rules">Правила игры:</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam saepe libero tempora consectetur doloribus quo quia dolorum, quasi deserunt blanditiis asperiores possimus hic, id perspiciatis officia natus quae explicabo?</p> <input type="button" id="Start" value="Start!"> <input type="button" id="Pause" value="Pause!"> <input type="button" id="Results" value="Results!">' 
@@ -53,11 +55,13 @@ function switchToStateFromURLHash() {
         break;
 
       case 'Record':
+        
         IPAGE.innerHTML="";
         resultTableBilding()
         // IPAGE.innerHTML=resultTableBilding();
         pageHTML_right+='<h1>Поздравляю, Дорогой Друг!</h1> <p class="rules">Данные таблицы:</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam saepe libero tempora consectetur doloribus quo quia dolorum, quasi deserunt blanditiis asperiores possimus hic, id perspiciatis officia natus quae explicabo?</p> <input type="button" id="Main" value="Main!" onclick="switchToMainPage()"> ' 
         IpageRight.innerHTML=pageHTML_right;
+ 
         break;
     }
     // IPAGE.innerHTML=pageHTML;

@@ -6,7 +6,7 @@ let winAudio = new Audio("sounds/winning.mp3");
 
 
 // hitraketAudio.play()
-hitraketAudio.stop()
+// hitraketAudio.stop()
 
 function soundHotRacket (){
     // hitraketAudio.src = "sounds/hitRacket.mp3"
@@ -14,14 +14,14 @@ function soundHotRacket (){
 }
 
 
-hitBlockAudio.stop()
+// hitBlockAudio.stop()
 
 function soundhitBlock (){
     hitBlockAudio.play()
 }
 
 
-gameOverAudio.stop()
+// gameOverAudio.stop()
 
 function soundGameOver (){
     gameOverAudio.play()
@@ -29,7 +29,7 @@ function soundGameOver (){
 
 
 // winAudio.play()
-winAudio.stop()
+// winAudio.stop()
 
 function soundWin (){
     winAudio.play()

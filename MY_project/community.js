@@ -154,5 +154,5 @@ function resultTableBilding(){
     }
     console.warn(table)
     IPAGEcontainer.appendChild(table)
-
+   
 }

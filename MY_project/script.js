@@ -17,7 +17,7 @@ function START (){
   document.querySelector(".name").innerHTML = newPlayer.name
 
     window.onbeforeunload= warning
-    console.error("START!!!!")
+
 
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -141,8 +141,8 @@ function START (){
               ]
               next()
               soundhitBlock()
-
-              if(newPlayer.score == Brick.column*Brick.row) {
+//Brick.column*Brick.row
+              if(newPlayer.score == 1) {
                 phrases = [
                   'Я верил, что мы победим!',
               ]
@@ -308,6 +308,7 @@ function START (){
         startButton.style.display = "block"
         pauseButton.style.display = "none"
     }
+     unsaved = false
     function resultsGame(){
         pauseButton.style.display = "none"
         resultsButton.style.display = "block"
